@@ -1,0 +1,1 @@
+web: gunicorn RecomendaAnimes.wsgi --log-file
