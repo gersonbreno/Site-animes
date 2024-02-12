@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Pesquisa animes{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-6">
+      <!-- Conteúdo da coluna aqui -->
+      <h3>Resultado da pesquisa <span class = "text-success">{{request.GET.keyword}} </span></h3>
+      {% for result in results %}
+      <h2> {{result.titulo}}</h2>
+      <img
+        src="{{result.img.url}}"
+        alt=""  style="max-width: 40rem;"
+      />
+      <p>
+        <span style="color: blue;"> Genero: </span>{{result.genero}}<br>  <br>
+      <span style="color: blue;"> Sinopse: </span> <br> <br>
+        &{{result.snipose}}
+        <br><br>
+         
+      </p>
+  </div>
+   
+ 
+ <div>
+    {% endfor %}
+     
+      
+       
+   
+    {% endblock %}
