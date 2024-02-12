@@ -1,1 +1,1 @@
-web: gunicorn RecomendaAnimes.wsgi --log-file
+web: gunicorn RecomendaAnimes.wsgi
