@@ -7,7 +7,7 @@ urlpatterns = [
     path('login/' , LoginView.as_view(), name = "login"),
     path('sair/' , sairView.as_view(), name = "sair") , 
     path('animes-acao/' , AcaoView.as_view(), name = "acao") ,
-    path('comentario/' ,ComentarioView.as_view(), name = "comentar") ,
-    path('exibir-comentario<int:comentario_id>/' ,  ExibirComentarioView.as_view(), name = "exibir") ,
     path('pesquisa/', PesquisaView.as_view(), name='pesquisar'),
+    # path('comentar/<int:post_id>/', ComentarioView.as_view(), name='comentar'),
+    path('comentar/', ComentarioView.as_view(), name='comentar'),
 ]

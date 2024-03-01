@@ -21,7 +21,11 @@
          
       </p>
   </div>
-   
+  <h3>comentario</h3>
+
+
+
+     
  
  <div>
     {% endfor %}
@@ -30,3 +34,16 @@
        
    
     {% endblock %}
+    div class="container mt-5">
+    <h2>Comentários Recentes</h2>
+
+    {% for comentario in comentarios %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Nome: {{ comentario.nome }}</h5>
+                <p class="card-text">Usuário: {{ comentario.usuario.username }} - Data de Publicação: {{ comentario.data_publicao }}</p>
+                <p class="card-text">{{ comentario.conteudo }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

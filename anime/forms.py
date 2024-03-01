@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario
+from .models import Usuario, Comentario
 from django.forms import ModelForm, TextInput, EmailInput, PasswordInput
 from django.contrib.auth.models import User
 
@@ -32,4 +32,11 @@ class UsuarioEntrarForm(forms.Form):
     username = forms.CharField(widget= forms.TextInput (attrs = {'placeholder': 'usuario', 'class': "form-control", 'style': 'Width: 300px; display: flex; '}))
     password = forms.CharField(widget= forms.PasswordInput (attrs = {'placeholder': 'senha', 'class': "form-control", 'style': 'Width: 300px; display: flex; '}) )
 
-    
+class ComentarioForms(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ["nome", "conteudo"]
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'conteudo': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }

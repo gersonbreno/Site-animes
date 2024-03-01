@@ -1,25 +1,85 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static "css/cadastro.css" %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Cadastrar</title>
-  </head>
-  <body>
-    <div class="tela-cadatro">
-      <h1>informe suas informações corretamente</h1>
-      <form action = "" method = "POST">
-        {% csrf_token %}
-        {{form.as_p}}
-      <input type="submit" value="Cadastrar">
-      <a href="{% url 'login' %}">ja tem uma conta </a>
-    </form>
-      </div>
-    </div>
-   
+    <style>
+        body {
+            background-color: #f8f9fa; /* Set a light background color */
+        }
 
-  </body>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 500px; /* Increased card width */
+            padding: 20px; /* Added padding for better spacing */
+            border-radius: 15px; /* Added border radius for rounded corners */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Added a box shadow for depth */
+        }
+
+        .tela-cadastro {
+            background-color: #fff; /* Set a white background color */
+        }
+
+        .card-title {
+            color: #007bff; /* Set card title color to Bootstrap's primary color */
+        }
+
+        form {
+            margin-top: 20px; /* Added top margin to the form */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%; /* Make text fields and submit button full width */
+            margin-bottom: 10px; /* Added bottom margin for spacing between elements */
+            padding: 15px; /* Increased padding for a larger appearance */
+            border: 1px solid #ced4da; /* Added a subtle border */
+            border-radius: 8px; /* Added border radius for rounded corners */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff; /* Set background color to Bootstrap's primary color */
+            color: #fff; /* Set text color to white */
+            cursor: pointer; /* Added pointer cursor on hover */
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px; /* Increased top margin for spacing */
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card tela-cadastro">
+            <div class="card-body">
+              <br>
+              <br>
+              <br>
+                <h1 class="card-title text-center">Informe suas informações corretamente</h1>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                </form>
+                <p class="text-center mt-3">
+                    Já tem uma conta? <a href="{% url 'login' %}">Faça login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

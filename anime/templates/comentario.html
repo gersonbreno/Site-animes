@@ -1,0 +1,17 @@
+<!-- detalhes_post.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes do Post</title>
+</head>
+<body>
+
+    <form id="commentForm" method="post" action="{% url 'comentar' post_id=post_id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Adicionar Comentário</button>
+    </form>
+
+</body>
+</html>

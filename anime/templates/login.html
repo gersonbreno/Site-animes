@@ -1,31 +1,82 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="Xform-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-      form
-    />
-    <link rel="stylesheet" href="{% static "css/cadastro.css" %}" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Login</title>
-  </head>
-  <body>
-    <div class="tela-login">
-      <h1>Login</h1>
-      <form action = """ method = "POST">{% csrf_token %}
-      {{form.as_p}}
-     
-        <input type="submit" value="LOGIN">
-        <a href="{% url 'cadastrar' %}">cria as sua conta </a>
-      </form>
-      </div>
-     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% comment %} <link rel="stylesheet" href="{% static "css/cadastro.css" %}" /> {% endcomment %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #000; /* Set black background color */
+            color: #fff; /* Set white text color */
+            padding-top: 50px; /* Adjust top padding for navbar */
+        }
 
-    </div>
-   
-  </body>
+        .tela-login {
+            max-width: 400px; /* Set max width for the login container */
+            margin: auto; /* Center the login container */
+            padding: 20px; /* Add some padding for better spacing */
+            background-color: #000; /* Set black background color for the login container */
+            border-radius: 10px; /* Add border radius for rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+            margin-top: 50px; /* Adjust top margin for better spacing */
+        }
+
+        h1 {
+            text-align: center; /* Center-align the heading */
+            color: #fff; /* Set white heading color */
+        }
+
+        form {
+            margin-top: 20px; /* Add top margin to the form */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%; /* Make text fields and submit button full width */
+            margin-bottom: 10px; /* Add bottom margin for spacing between elements */
+            padding: 10px; /* Add padding for better appearance */
+            border: 1px solid #ced4da; /* Add a subtle border */
+            border-radius: 5px; /* Add border radius for rounded corners */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff; /* Set background color to Bootstrap's primary color */
+            color: #fff; /* Set text color to white */
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        a {
+            display: block; /* Make the link a block element for better spacing */
+            text-align: center; /* Center-align the link */
+            margin-top: 10px; /* Add top margin for spacing between the form and link */
+            color: #fff; /* Set white link color */
+        }
+
+        .text-danger {
+            color: #dc3545; /* Set text color for danger messages */
+            text-align: center; /* Center-align the error message */
+            margin-top: 10px; /* Add top margin for spacing */
+        }
+    </style>
+    <title>Login</title>
+</head>
+<body>
+    <div class="tela-login">
+        <h1>Login</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="LOGIN">
+            <a href="{% url 'cadastrar' %}" class="btn btn-link">Criar sua conta</a>
+        </form>
+        {% if error is not None  %}
+        <p class="text-danger">{{ error }}</p>
+    {% endif %}
+ 
+</body>
 </html>

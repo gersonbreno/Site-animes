@@ -15,47 +15,55 @@
   </head>
   <body  class="bg-dark text-white">
    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light bg-secondary text-white">
+    <nav class="navbar navbar-expand-lg ">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
   
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url "home" %}">Inicio</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url "acao" %}" id="acao">Ação</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url "romance" %}" id="">Romance</a>
-              </li>
-              {% if request.user.usuario %}
-              <li class="nav-item">
-                Seja bem vindo {{request.user.username}}
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "sair" %}" id="">Sair</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "login" %}" id="">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "cadastrar" %}" id="">Cadastras-se</a>
-            </li>
-            {% endif %}
-          </ul>
-          <div class="float-end">
-            <form action="{% url "pesquisar" %}" method = "GET">
-            <input type="text" name = "keyword" placeholder="Pesquisa animes" required>
-            <button class ="btn btn-success pull-rigth"> Pesquisa
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url "home" %}">Ganime</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-        </form>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "home" %}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "acao" %}" id="acao">Ação</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "romance" %}" id="romance">Romance</a>
+                    </li>
+                    {% if request.user.usuario %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Seja bem-vindo {{request.user.username}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "sair" %}">Sair</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "login" %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "cadastrar" %}">Cadastrar-se</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <form class="ml-auto" action="{% url "pesquisar" %}" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="keyword" placeholder="Pesquisar animes" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
-  
+    </nav>
      
   </nav>
   <script>
@@ -104,34 +112,42 @@
       </div>
   </footer>
   <div class="container mt-5">
-    <h2>Comentários</h2>
+    <title>Comentários</title>
+</head>
+<body>
 
-    <!-- Formulário para adicionar novos comentários -->
-    <form id="commentForm" method = "post" {% url "comentar" %}>
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="author">Nome:</label>
-            <input type="text" class="form-control" id="author" required name = "nome">
-        </div>
-        <div class="form-group">
-            <label for="comment">Comentário:</label>
-            <textarea class="form-control" id="comment" rows="4" required name ="comentar"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Adicionar Comentário</button>
-    </form>
-    <body class="container mt-5">
-        <p>exibir</p>
-        {% comment %} {% for in comentarios %} {% endcomment %}
-        <div class="card">
-            <div class="card-body">
-                <h1 class="card-title">Comentário abaixo</h1>
-                <p class="card-text">Usuario: {{comentario.usuario.email}}</p>
-                <p class="card-text">Email: </p>
-                <p class="card-text">cometario: {{comentario.conteudo }}</p>
-                <p class="card-text">Data: {{comentario.data_publicao}}</p>
-            </div>
-            {% comment %} :{% endfor %} {% endcomment %}
-        </div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Comentários</h1>
     
+        {% for comentario in comentarios %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Nome: {{comentario.nome}}</h5>
+                    <p class="card-text">Usuário: {{ comentario.usuario.username }} - Data de Publicação: {{ comentario.data_publicao }}</p>
+                    <p class="card-text">{{ comentario.conteudo}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    
+        <h2 class="mb-4">Adicionar Comentário</h2>
+    
+        <form method="post" action="{% url 'comentar' %}" class="mb-5">
+            {% csrf_token %}
+    
+            <div class="mb-3">
+                {{ form.nome.label_tag }}
+                {{ form.nome }}
+            </div>
+    
+            <div class="mb-3">
+                {{ form.conteudo.label_tag }}
+                {{ form.conteudo }}
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Comentar</button>
+        </form>
+    </div>
+
+
 
 </html>
