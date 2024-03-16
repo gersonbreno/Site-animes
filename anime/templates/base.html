@@ -7,26 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" integrity="sha384-eMN5TUtbFOtW2kgpo28YoBjDpLdYD0K9u90KjE2YbIgx6QZkq6h5FOopnBO+PmY3" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WySZCgBE5u0IbbVlHavHhFC+PXY8jpCg9k" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script> 
 <title>{% block title%} {%endblock%}</title>
   </head>
-  <body  class="bg-dark text-white">
-   
-    <nav class="navbar navbar-expand-lg ">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <body class="bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url "home" %}">Ganime</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,28 +29,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "romance" %}" id="romance">Romance</a>
                     </li>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div style="display: flex; align-items: center;">
-                                {% if request.user.usuario %}
-                                    <img src="https://cdn-icons-png.flaticon.com/512/6073/6073873.png" alt="Avatar" class="avatar-img rounded-circle" style="width: 40px; height: 40px;">
-                                    <span style="font-size: 14px; margin-left: 8px;">{{ request.user.username }}</span>
-                                {% else %}
-                                    <i class="fas fa-user"></i> <!-- Ícone padrão caso não haja imagem de perfil -->
-                                {% endif %}
-                            </div>
-                            <!-- Texto ou ícone para representar o dropdown -->
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            {% if request.user.usuario %}
-                                <a class="dropdown-item" href="{% url 'sair' %}">Sair</a>
-                            {% else %}
-                                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                                <a class="dropdown-item" href="{% url 'cadastrar' %}">Cadastrar-se</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
                 </ul>
                 <form class="ml-auto" action="{% url "pesquisar" %}" method="GET">
                     <div class="input-group">
@@ -71,23 +38,39 @@
                         </div>
                     </div>
                 </form>
+                <div class="dropdown ml-auto">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div style="display: flex; align-items: center;">
+                            {% if request.user.usuario %}
+                                <img src="https://cdn-icons-png.flaticon.com/512/6073/6073873.png" alt="Avatar" class="avatar-img rounded-circle" style="width: 40px; height: 40px;">
+                                <span style="font-size: 14px; margin-left: 8px;">{{ request.user.username }}</span>
+                            {% else %}
+                                <i class="fas fa-user"></i> <!-- Ícone padrão caso não haja imagem de perfil -->
+                            {% endif %}
+                        </div>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% if request.user.usuario %}
+                            <a class="dropdown-item" href="{% url 'sair' %}">Sair</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                            <a class="dropdown-item" href="{% url 'cadastrar' %}">Cadastrar-se</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
-     
-  </nav>
-  <script>
-    // Adiciona um evento de clique ao botão de toggle para abrir o menu ao ser clicado
-    $('.navbar-toggler').click(function () {
-        $('#navbarNav').toggleClass('show');
-    });
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var navbarToggler = document.querySelector(".navbar-toggler");
+            var navbarNav = document.querySelector("#navbarNav");
 
-    // Adiciona um evento de clique aos itens de navegação para fechar o menu ao ser clicado
-    $('.navbar-nav a').click(function () {
-        $('#navbarNav').removeClass('show');
-    });
-</script>
-
+            navbarToggler.addEventListener("click", function() {
+                navbarNav.classList.toggle("show");
+            });
+        });
+    </script>
  
     
       {% block content %}
