@@ -11,7 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" integrity="sha384-eMN5TUtbFOtW2kgpo28YoBjDpLdYD0K9u90KjE2YbIgx6QZkq6h5FOopnBO+PmY3" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WySZCgBE5u0IbbVlHavHhFC+PXY8jpCg9k" crossorigin="anonymous"></script>
-    <title>{% block title%} {%endblock%}</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+<title>{% block title%} {%endblock%}</title>
   </head>
   <body  class="bg-dark text-white">
    
@@ -37,21 +40,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "romance" %}" id="romance">Romance</a>
                     </li>
-                    {% if request.user.usuario %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Seja bem-vindo {{request.user.username}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url "sair" %}">Sair</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url "login" %}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url "cadastrar" %}">Cadastrar-se</a>
-                        </li>
-                    {% endif %}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div style="display: flex; align-items: center;">
+                                {% if request.user.usuario %}
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6073/6073873.png" alt="Avatar" class="avatar-img rounded-circle" style="width: 40px; height: 40px;">
+                                    <span style="font-size: 14px; margin-left: 8px;">{{ request.user.username }}</span>
+                                {% else %}
+                                    <i class="fas fa-user"></i> <!-- Ícone padrão caso não haja imagem de perfil -->
+                                {% endif %}
+                            </div>
+                            <!-- Texto ou ícone para representar o dropdown -->
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% if request.user.usuario %}
+                                <a class="dropdown-item" href="{% url 'sair' %}">Sair</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                                <a class="dropdown-item" href="{% url 'cadastrar' %}">Cadastrar-se</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
                 </ul>
                 <form class="ml-auto" action="{% url "pesquisar" %}" method="GET">
                     <div class="input-group">
@@ -148,6 +158,17 @@
         </form>
     </div>
 
-
+<style>
+    .user-avatar {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #007bff; /* Cor de fundo da bola redonda */
+        color: #fff; /* Cor do texto da bola redonda */
+    }
+</style>
 
 </html>

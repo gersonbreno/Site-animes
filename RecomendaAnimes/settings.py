@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'RecomendaAnimes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'animes_14wl',
+        'USER': 'gerson',
+        'PASSWORD': 'CV8Fbe1O4CZCSu0LUZmOjg9ebfKtJHeW',
+        'HOST': 'dpg-cnqvp7mct0pc73cplj50-a.oregon-postgres.render.com',  # Somente o endereço do host
+        'PORT': '5432',  # Porta padrão do PostgreSQL
     }
 }
 

@@ -22,12 +22,17 @@ class UsuarioRegistrarForms(forms.ModelForm):
             }),
             
         }
+    def clean_password(self):
+        password = self.cleaned_data.get("password")
+        if len(password) < 8:
+            raise forms.ValidationError("A senha deve ter pelo menos 8 caracteres.")
+        return password  
     def clean_username(self):
         unome = self.cleaned_data.get("username")
         if User.objects.filter(username = unome).exists():
             raise forms.ValidationError("Este Cliente ja existe no nosso Sistema!")
         return unome
-
+ 
 class UsuarioEntrarForm(forms.Form):
     username = forms.CharField(widget= forms.TextInput (attrs = {'placeholder': 'usuario', 'class': "form-control", 'style': 'Width: 300px; display: flex; '}))
     password = forms.CharField(widget= forms.PasswordInput (attrs = {'placeholder': 'senha', 'class': "form-control", 'style': 'Width: 300px; display: flex; '}) )

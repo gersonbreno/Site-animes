@@ -1,66 +1,71 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Xform-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% comment %} <link rel="stylesheet" href="{% static "css/cadastro.css" %}" /> {% endcomment %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
-            background-color: #000; /* Set black background color */
-            color: #fff; /* Set white text color */
-            padding-top: 50px; /* Adjust top padding for navbar */
+            background-image: url("https://files.passeidireto.com/e7bed11f-b15b-4013-a2f5-c3d8407073ce/e7bed11f-b15b-4013-a2f5-c3d8407073ce.jpeg");
+            background-size: cover; /* Garante que a imagem cubra todo o corpo */
+            background-position: center; /* Centraliza a imagem no corpo */
+            background-repeat: no-repeat; /* Evita a repetição da imagem */
+            background-attachment: fixed; /* Mantém a imagem fixa enquanto a página é rolada */
+            /* Adicione outros estilos de acordo com suas preferências */
+            background-color: #000; /* Cor de fundo de fallback */
+            color: #fff; /* Cor do texto */
+            padding-top: 50px; /* Ajuste o preenchimento superior para a barra de navegação */
         }
 
         .tela-login {
-            max-width: 400px; /* Set max width for the login container */
-            margin: auto; /* Center the login container */
-            padding: 20px; /* Add some padding for better spacing */
-            background-color: #000; /* Set black background color for the login container */
-            border-radius: 10px; /* Add border radius for rounded corners */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
-            margin-top: 50px; /* Adjust top margin for better spacing */
+            max-width: 400px; /* Define a largura máxima para o contêiner de login */
+            margin: auto; /* Centraliza o contêiner de login */
+            padding: 20px; /* Adiciona um pouco de preenchimento para melhor espaçamento */
+            background-color: rgba(0, 0, 0, 0.7); /* Define a cor de fundo do contêiner de login com transparência */
+            border-radius: 10px; /* Adiciona um raio de borda para cantos arredondados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil para efeito de profundidade */
+            margin-top: 50px; /* Ajusta a margem superior para melhor espaçamento */
         }
 
         h1 {
-            text-align: center; /* Center-align the heading */
-            color: #fff; /* Set white heading color */
+            text-align: center; /* Alinha o título ao centro */
+            color: #fff; /* Define a cor do título para branco */
         }
 
         form {
-            margin-top: 20px; /* Add top margin to the form */
+            margin-top: 20px; /* Adiciona margem superior ao formulário */
         }
 
         input[type="text"],
         input[type="password"],
         input[type="submit"] {
-            width: 100%; /* Make text fields and submit button full width */
-            margin-bottom: 10px; /* Add bottom margin for spacing between elements */
-            padding: 10px; /* Add padding for better appearance */
-            border: 1px solid #ced4da; /* Add a subtle border */
-            border-radius: 5px; /* Add border radius for rounded corners */
+            width: 100%; /* Faz os campos de texto e o botão de envio terem largura total */
+            margin-bottom: 10px; /* Adiciona margem inferior para espaçamento entre os elementos */
+            padding: 10px; /* Adiciona preenchimento para melhor aparência */
+            border: 1px solid #ced4da; /* Adiciona uma borda sutil */
+            border-radius: 5px; /* Adiciona borda arredondada */
         }
 
         input[type="submit"] {
-            background-color: #007bff; /* Set background color to Bootstrap's primary color */
-            color: #fff; /* Set text color to white */
-            cursor: pointer; /* Add pointer cursor on hover */
+            background-color: #007bff; /* Define a cor de fundo para a cor primária do Bootstrap */
+            color: #fff; /* Define a cor do texto para branco */
+            cursor: pointer; /* Adiciona cursor do tipo ponteiro ao passar o mouse */
         }
 
         a {
-            display: block; /* Make the link a block element for better spacing */
-            text-align: center; /* Center-align the link */
-            margin-top: 10px; /* Add top margin for spacing between the form and link */
-            color: #fff; /* Set white link color */
+            display: block; /* Torna o link um elemento de bloco para melhor espaçamento */
+            text-align: center; /* Alinha o link ao centro */
+            margin-top: 10px; /* Adiciona margem superior para espaçamento entre o formulário e o link */
+            color: #fff; /* Define a cor do link para branco */
         }
 
         .text-danger {
-            color: #dc3545; /* Set text color for danger messages */
-            text-align: center; /* Center-align the error message */
-            margin-top: 10px; /* Add top margin for spacing */
+            color: #dc3545; /* Define a cor do texto para mensagens de erro */
+            text-align: center; /* Alinha a mensagem de erro ao centro */
+            margin-top: 10px; /* Adiciona margem superior para espaçamento */
         }
     </style>
     <title>Login</title>
@@ -76,7 +81,7 @@
         </form>
         {% if error is not None  %}
         <p class="text-danger">{{ error }}</p>
-    {% endif %}
- 
+        {% endif %}
+    </div> <!-- Feche a tag div aqui -->
 </body>
 </html>

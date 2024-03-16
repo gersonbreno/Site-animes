@@ -9,7 +9,12 @@
     <title>Cadastrar</title>
     <style>
         body {
-            background-color: #f8f9fa; /* Set a light background color */
+            background-image: url("https://files.passeidireto.com/e7bed11f-b15b-4013-a2f5-c3d8407073ce/e7bed11f-b15b-4013-a2f5-c3d8407073ce.jpeg");
+            background-size: cover; /* Garante que a imagem cubra todo o corpo */
+            background-position: center; /* Centraliza a imagem no corpo */
+            background-repeat: no-repeat; /* Evita a repetição da imagem */
+            background-attachment: fixed; /* Mantém a imagem fixa enquanto a página é rolada */
+            /* Outros estilos de acordo com suas preferências */
         }
 
         .container {
@@ -20,55 +25,56 @@
         }
 
         .card {
-            width: 500px; /* Increased card width */
-            padding: 20px; /* Added padding for better spacing */
-            border-radius: 15px; /* Added border radius for rounded corners */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Added a box shadow for depth */
+            width: 500px; /* Largura do cartão aumentada */
+            padding: 20px; /* Adicionado preenchimento para melhor espaçamento */
+            border-radius: 15px; /* Adicionado raio da borda para cantos arredondados */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Adicionado uma sombra para profundidade */
+            background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo branca com transparência */
         }
 
         .tela-cadastro {
-            background-color: #fff; /* Set a white background color */
+            background-color: rgba(0, 0, 0, 0.2); /* Cor de fundo preta com transparência */
+            border-radius: 15px; /* Adicionado raio da borda para cantos arredondados */
+            padding: 20px; /* Adicionado preenchimento para melhor espaçamento */
         }
 
         .card-title {
-            color: #007bff; /* Set card title color to Bootstrap's primary color */
+            color: #007bff; /* Cor do título do cartão */
         }
 
         form {
-            margin-top: 20px; /* Added top margin to the form */
+            margin-top: 20px; /* Margem superior adicionada para o formulário */
         }
 
         input[type="text"],
         input[type="password"],
         input[type="submit"] {
-            width: 100%; /* Make text fields and submit button full width */
-            margin-bottom: 10px; /* Added bottom margin for spacing between elements */
-            padding: 15px; /* Increased padding for a larger appearance */
-            border: 1px solid #ced4da; /* Added a subtle border */
-            border-radius: 8px; /* Added border radius for rounded corners */
+            width: 100%; /* Faz os campos de texto e o botão de envio ocuparem toda a largura */
+            margin-bottom: 10px; /* Margem inferior adicionada para espaçamento entre os elementos */
+            padding: 15px; /* Preenchimento aumentado para uma aparência maior */
+            border: 1px solid #ced4da; /* Adicionada uma borda sutil */
+            border-radius: 8px; /* Adicionado raio da borda para cantos arredondados */
+            background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo branca com transparência */
         }
 
         input[type="submit"] {
-            background-color: #007bff; /* Set background color to Bootstrap's primary color */
-            color: #fff; /* Set text color to white */
-            cursor: pointer; /* Added pointer cursor on hover */
+            background-color: #007bff; /* Cor de fundo do botão */
+            color: #fff; /* Cor do texto do botão */
+            cursor: pointer; /* Cursor de ponteiro adicionado ao passar o mouse */
         }
 
         a {
             display: block;
             text-align: center;
-            margin-top: 15px; /* Increased top margin for spacing */
-            color: #007bff;
+            margin-top: 15px; /* Margem superior aumentada para espaçamento */
+            color: #007bff; /* Cor do link */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="card tela-cadastro">
-            <div class="card-body">
-              <br>
-              <br>
-              <br>
+            <div class="card-body" style="background-color: rgba(255, 255, 255, 0.7);">
                 <h1 class="card-title text-center">Informe suas informações corretamente</h1>
                 <form action="" method="POST">
                     {% csrf_token %}
@@ -81,5 +87,3 @@
             </div>
         </div>
     </div>
-</body>
-</html>

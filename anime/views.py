@@ -126,7 +126,7 @@ class NovoComentarioView(View):
 
 class ComentarioView(View):
     template_name = 'base.html'
-
+    @method_decorator(login_required(login_url='/login/'))
     def get(self, request):
         comentarios = Comentario.objects.all()
         form = ComentarioForms()
