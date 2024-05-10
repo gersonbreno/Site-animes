@@ -78,6 +78,7 @@
             {{form.as_p}}
             <input type="submit" class="btn btn-primary" value="LOGIN">
             <a href="{% url 'cadastrar' %}" class="btn btn-link">Criar sua conta</a>
+            <a href="{% url 'password_reset' %}" class="btn btn-link">Esqueci a senha</a>
         </form>
         {% if error is not None  %}
         <p class="text-danger">{{ error }}</p>

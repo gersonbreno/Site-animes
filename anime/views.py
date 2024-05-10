@@ -12,6 +12,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib import messages
 from . models import Anime, User, Comentario
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
+from django.contrib.auth.forms import PasswordResetForm
+from .forms import MyPasswordResetForm
 class HomeView(TemplateView):
     template_name = "index.html"
     def get_context_data(self, **kwargs):
@@ -140,3 +143,18 @@ class ComentarioView(View):
             novo_comentario.save()
             return redirect('home')
         return render(request, self.template_name, {'form': form})
+
+
+class MyPasswordResetView(PasswordResetView):
+    """
+    Esta view exibe o formulário de redefinição de senha.
+    """
+    form_class = PasswordResetForm
+    template_name = 'registration/password_reset_form.html'
+    success_url = reverse_lazy('password_reset_done')  # Redireciona para a página de sucesso de redefinição de senha
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    """
+    Esta view exibe a página de sucesso após o envio do e-mail de redefinição de senha.
+    """
+    template_name = 'registration/password_reset_done.html'

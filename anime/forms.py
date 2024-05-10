@@ -2,7 +2,7 @@ from django import forms
 from .models import Usuario, Comentario
 from django.forms import ModelForm, TextInput, EmailInput, PasswordInput
 from django.contrib.auth.models import User
-
+from django.contrib.auth.forms import PasswordResetForm
 
 class UsuarioRegistrarForms(forms.ModelForm):
     username = forms.CharField(widget= forms.TextInput(attrs = {'placeholder': 'usuario', 'class': "form-control", 'style': 'Width: 300px; display: flex; '}))
@@ -45,3 +45,20 @@ class ComentarioForms(forms.ModelForm):
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
             'conteudo': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
         }
+
+
+
+class MyPasswordResetForm(PasswordResetForm):
+    """
+    Formulário personalizado para redefinição de senha.
+    """
+    # Se você quiser adicionar campos adicionais, pode fazê-lo aqui
+
+    def clean_email(self):
+        """
+        Verifica se o e-mail fornecido pertence a um usuário existente.
+        """
+        email = self.cleaned_data.get('email')
+        if not email:
+            raise forms.ValidationError("Por favor, insira um endereço de e-mail.")
+        return email
